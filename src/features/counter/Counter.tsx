@@ -7,12 +7,12 @@ export function Counter() {
   const dispatch = useAppDispatch();
   const [incrementAmount, setIncrementAmount] = useState("2");
   const incrementValue = Number(incrementAmount) || 0;
-  
+
   return (
     <div className="counter">
       <h1 className="counter-title">Redux Toolkit Example Counter</h1>
       <div className="counter-wrapper">
-        <button  aria-label="Decrement value" className="counter-button-decrement" onClick={() => dispatch(decrement())}>
+        <button aria-label="Decrement value" className="counter-button-decrement" onClick={() => dispatch(decrement())}>
           -
         </button>
         <span className="counter-value">{count}</span>
@@ -21,7 +21,13 @@ export function Counter() {
         </button>
       </div>
       <div className="counter-customize">
-        <input aria-label="Set increment amount" className="counter-add-input-value" onChange={(e) => setIncrementAmount(e.target.value)} type="text" value={incrementAmount} />
+        <input
+          aria-label="Set increment amount"
+          className="counter-add-input-value"
+          onChange={(e) => setIncrementAmount(e.target.value)}
+          type="text"
+          value={incrementAmount}
+        />
         <button className="counter-button-solid" onClick={() => dispatch(incrementByAmount(incrementValue))}>
           + Amount
         </button>

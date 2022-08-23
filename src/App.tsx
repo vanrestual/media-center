@@ -12,19 +12,32 @@ export default function App() {
       <nav className="navigation-bar">
         <div className="navigation-bar-wrapper">
           <div className="navigation-bar-left">
-            <NavLink to="/" className={({ isActive }) => isActive ? "navigation-bar-brand-active" : "navigation-bar-brand"}>
+            <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? "navigation-bar-brand-active" : "navigation-bar-brand")}
+            >
               <Logo aria-hidden="true" className="navigation-bar-logo" />
               <span className="navigation-bar-logo-label">MPIndo</span>
             </NavLink>
             <ul className="navigation-bar-menu">
               <li>
-                <NavLink className={({ isActive }) => isActive ? "navigation-bar-menu-link-active": "navigation-bar-menu-link"} to="/counter">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "navigation-bar-menu-link-active" : "navigation-bar-menu-link"
+                  }
+                  to="/counter"
+                >
                   <CalculatorIcon aria-hidden="true" className="navigation-bar-menu-link-icon" />
                   <span className="navigation-bar-menu-link-label">Counter</span>
                 </NavLink>
               </li>
               <li>
-                <NavLink className={({ isActive }) => isActive ? "navigation-bar-menu-link-active": "navigation-bar-menu-link"} to="/media">
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "navigation-bar-menu-link-active" : "navigation-bar-menu-link"
+                  }
+                  to="/media"
+                >
                   <PhotographIcon aria-hidden="true" className="navigation-bar-menu-link-icon" />
                   <span className="navigation-bar-menu-link-label">Media</span>
                 </NavLink>
@@ -46,7 +59,13 @@ export default function App() {
       <footer className="footer">
         <div className="footer-wrapper">
           <Logo aria-hidden="true" className="footer-logo" />
-          <p className="footer-copyright">Copyright &copy; {new Date().getFullYear()} <Link className="footer-copyright-link" to="/">MPIndo</Link>. <span className="footer-copyright-row">All rights reserved.</span></p>
+          <p className="footer-copyright">
+            Copyright &copy; {new Date().getFullYear()}{" "}
+            <Link className="footer-copyright-link" to="/">
+              MPIndo
+            </Link>
+            . <span className="footer-copyright-row">All rights reserved.</span>
+          </p>
         </div>
       </footer>
     </>
