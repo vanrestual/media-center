@@ -19,12 +19,12 @@ export default function Uploads() {
   
   const handleUploads = async () => {
     try {
-      const data = await s3Client.send(new PutObjectCommand({
+      const data = await s3Client.putObject({
         Bucket: process.env.REACT_APP_S3_BUCKET_NAME,
         Key: 'testreact/' + (files[0] as any).name,
         Body: files[0],
         ACL: "public-read"
-      }),);
+      });
       console.log("Successfully uploaded object: " + process.env.REACT_APP_S3_BUCKET_NAME + "/" + (files[0] as any).name);
       console.log(data);
       return data;

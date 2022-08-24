@@ -8,7 +8,7 @@ export default function Media() {
   const [data, setData] = useState<ListObjectsOutput>({});
   const getContents = async () => {
     try {
-      const data = await s3Client.send(new ListObjectsCommand({ Bucket: process.env.REACT_APP_S3_BUCKET_NAME }));
+      const data = await s3Client.send(new ListObjectsCommand({ Bucket: process.env.REACT_APP_S3_BUCKET_NAME,Prefix: "testreact" }));
       setData(data);
     } catch (err) {
       console.log(err);
