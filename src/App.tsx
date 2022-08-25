@@ -25,10 +25,10 @@ export default function App() {
                   className={({ isActive }) =>
                     isActive ? "navigation-bar-menu-link-active" : "navigation-bar-menu-link"
                   }
-                  to="/counter"
+                  to="/example"
                 >
                   <CalculatorIcon aria-hidden="true" className="navigation-bar-menu-link-icon" />
-                  <span className="navigation-bar-menu-link-label">Counter</span>
+                  <span className="navigation-bar-menu-link-label">Example</span>
                 </NavLink>
               </li>
               <li>
@@ -50,7 +50,7 @@ export default function App() {
         <div className="header-container">
           <Routes>
             <Route path="/" element={<Welcome />} />
-            <Route path="counter" element={<Counter />} />
+            <Route path="example" element={<Counter />} />
             <Route path="media" element={<Media />} />
             <Route path="media/uploads" element={<Uploads />} />
           </Routes>

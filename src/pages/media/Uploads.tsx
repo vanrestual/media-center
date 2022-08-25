@@ -7,27 +7,26 @@ export default function Uploads() {
   const [files, setFiles] = useState([]);
   
   const handleFilesChange = async (event: ChangeEvent<HTMLInputElement>) => {
-    let inputFiles = event.currentTarget.files;
-    const values = Object.values(inputFiles as object).map((inputFile) => {
+    let tempFiles = event.currentTarget.files;
+    const newFiles = Object.values(tempFiles as object).map(inputFile => {
       const objectURL = URL.createObjectURL(inputFile);
       inputFile.src = objectURL;
       return inputFile;
     })
-    console.log(values)
-    setFiles(values as [])
+    setFiles(newFiles as [])
   }
-  
+
   const handleUploads = async () => {
     try {
-      const data = await s3Client.putObject({
-        Bucket: process.env.REACT_APP_S3_BUCKET_NAME,
-        Key: 'testreact/' + (files[0] as any).name,
-        Body: files[0],
-        ACL: "public-read"
-      });
-      console.log("Successfully uploaded object: " + process.env.REACT_APP_S3_BUCKET_NAME + "/" + (files[0] as any).name);
-      console.log(data);
-      return data;
+      files?.map(async file => {
+        await s3Client.send(new PutObjectCommand({
+          Bucket: process.env.REACT_APP_S3_BUCKET_NAME,
+          Key: 'testreact/' + (file as File).name,
+          Body: file,
+          ACL: "public-read"
+        }));
+      })
+      console.log("Successfully uploaded object: " + process.env.REACT_APP_S3_BUCKET_NAME);
     } catch (err) {
       console.log("Error", err);
     }
@@ -45,7 +44,7 @@ export default function Uploads() {
             <p className="mb-2 text-sm text-gray-500 dark:text-gray-300 font-semibold">Choose files</p>
           </div>
         </label>
-        <input className="sr-only" id="dropzone-file" type="file" onChange={(e) => handleFilesChange(e)} />
+        <input className="sr-only" id="dropzone-file" type="file" multiple onChange={(e) => handleFilesChange(e)} />
       </div>
       {files && (
         <ul className="mt-6 space-y-3">
